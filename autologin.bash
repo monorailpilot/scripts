@@ -8,7 +8,6 @@ command_not_found_handle () {
 
     ssh $1 2>/dev/null
     if [ $? -eq 255 ] ; then
-        ERROR=$?
         echo "-bash: $1: command not found"
-        return $ERROR;
+        return 127;
     fi
