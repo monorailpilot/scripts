@@ -1,5 +1,4 @@
-#Place in yoo "-bash: $1: command not found"
-        return 127;r bashrc/bashprofile to automatically ssh to remote hosts (IE just type the host name at a bash prompt to initiate ssh).
+#Place in your bashrc/bashprofile to automatically ssh to remote hosts (IE just type the host name at a bash prompt to initiate ssh).
 
 ###Auto Login coolness
 command_not_found_handle () {
