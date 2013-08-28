@@ -13,7 +13,7 @@ $total=0;
 $count=0;
 $notfound=0;
 $max=0;
-$lasterror=0;
+$lasterror=1;
 
 print "Current Attempt: ";
 
