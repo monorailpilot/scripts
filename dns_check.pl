@@ -1,6 +1,5 @@
 #!/usr/bin/perl
-# This script will repetitively call a DNS server to look up a host name and report on the time it takes to process the request.  
-
+#
 if ($#ARGV!=3) {
 	print "\nUsage: dns_check.pl <HOST> <DNS SERVER> <REPETITIONS> <DISPLAY THRESHOLD IN MS>\n\n";
 	exit(1);
@@ -20,10 +19,10 @@ while ($count < $times) {
 	if ($1 > $threshold) {
 		print "Attempt:";
 		print $count+1 . " " . $1 . "ms\n";
-		$total+=$1;
-		if ($max < $1) {
-			$max=$1;
-		};		
+	};
+	$total+=$1;
+	if ($max < $1) {
+		$max=$1;
 	}
 	$count++;
 }
