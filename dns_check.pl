@@ -13,20 +13,30 @@ $total=0;
 $count=0;
 $notfound=0;
 $max=0;
+$lasterror=0;
+
+print "Current Attempt: ";
 
 while ($count < $times) {
 	@command=`dig $host \@$server`;
 	@ms= grep { /Query time: \d+ msec/ } @command;
 	@result= grep { /ANSWER SECTION/ } @command;
+	if (!$lasterror) {
+		print "\b" x length($count);
+	}
+	$lasterror=0;
+	print $count+1;
 	$ms[0] =~/(\d+)/;	
 	if (($1 > $threshold) || (!@result)){
+		$lasterror=1;	
+		print "\b" x (length($times)+ 16);
 		print "Attempt:";
 		print $count+1 . " " . $1 . "ms";
 		if (!@result) {
 			print " Not Found";
 			$notfound++;
 		}
-		print "\n";
+		print "                 \nCurrent Attempt: ";
 	};
 	$total+=$1;
 	if ($max < $1) {
@@ -34,5 +44,5 @@ while ($count < $times) {
 	}
 	$count++;
 }
-print "Max: $max ms, Avg: ".$total/$count."ms Not Found:$notfound\n";
+print "\nMax: $max ms, Avg: ".$total/$count."ms Not Found:$notfound\n";
 
