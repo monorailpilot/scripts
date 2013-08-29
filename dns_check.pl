@@ -44,5 +44,6 @@ while ($count < $times) {
 	}
 	$count++;
 }
-print "\nMax: $max ms, Avg: ".$total/$count."ms Not Found:$notfound\n";
+$rps=$total/$times;
+print "\nMax: $max ms, Avg: ".$rps."ms Requests Per Second: ". sprintf("%.3f",1000/$rps) . " Not Found:$notfound\n";
 
